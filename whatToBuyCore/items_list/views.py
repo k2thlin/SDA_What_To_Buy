@@ -1,12 +1,14 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from .models import ShoppingList
 
 # Create your views here.
 
-from django.http import HttpResponse
+def my_lists(request):
+    shopping_lists = ShoppingList.objects.all()
+    return render(request, "shopping_lists.html", context={"shopping_lists": shopping_lists})
 
-def hello(request, anything):
-    return HttpResponse(f"<h1>Potato Wars are {anything}?<h1>")
-
-def hello2(request):
-    anything = request.GET.get("situation")
-    return HttpResponse(f"<h1>Potato Wars are {anything}?<h1>")
+def items_list(request, id):
+    shopping_list = ShoppingList.objects.get(id=id)
+    items_list = shopping_list.shoppingitem_set.all()
+    return render(request, "shopping_list.html", context={"shopping_list": items_list})
