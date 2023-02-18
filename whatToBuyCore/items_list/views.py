@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .models import ShoppingList
 
 
 
 # Create your views here.
+def home(request):
+    return render(request, "home.html")
 
 
 def my_lists(request):
