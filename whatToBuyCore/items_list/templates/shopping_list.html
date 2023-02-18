@@ -9,12 +9,23 @@
             {{ingredient.description}}
           </div>
           {% if ingredient.is_completed %}
-            <input type="checkbox" checked=False />
+            <input type="checkbox" checked />
           {% else %}
             <input type="checkbox"/>
           {% endif %}
+
+          <button class="btn btn-info ms-2">
+            <a style="text-decoraation: none, color: inherit;" href="{% url 'item-update' pk=ingredient.pk %}">Update</a>
+          </button>
+
+          <button class="btn btn-danger ms-2">
+            <a style="text-decoraation: none, color: inherit;" href="{% url 'item-delete' pk=ingredient.pk %}">Delete</a>
+          </button>
         </li>
         {% endfor %}
       </ol>
+      <button class="btn btn-info ms-2">
+        <a style="text-decoraation: none, color: inherit;" href="{% url 'item-add' %}">Add</a>
+      </button>
 {% endblock content %}
     
