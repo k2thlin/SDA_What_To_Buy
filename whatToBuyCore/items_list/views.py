@@ -1,23 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from .models import ShoppingList, ShoppingItem
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
+
 
 
 # Create your views here.
-
-class ItemCreateView(CreateView):
-    model = ShoppingItem
-    fields = '__all__'
-
-class ItemUpdateView(UpdateView):
-    model = ShoppingItem
-    fields = '__all__'
-
-class ItemDeleteView(DeleteView):
-    model = ShoppingItem
-    success_url = reverse_lazy("items_list")
 
 
 def my_lists(request):
