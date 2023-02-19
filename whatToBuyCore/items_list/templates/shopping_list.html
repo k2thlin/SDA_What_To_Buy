@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="POST" action="#">
+<h3>{{header}}</h3>
+  <form method="POST" action="#">
+  {% csrf_token %}
   <div class="row">
     <div class="col-8">
       <ol class="list-group list-group-numbered">
@@ -12,13 +14,11 @@
             {{ingredient.description}}
           </div>
           {% if ingredient.is_completed %}
-            <input class="my-auto" type="checkbox" checked value="{{ingredient.pk}}" name=""checkbox/>
+            <input class="my-auto" type="checkbox" checked value="{{ingredient.pk}}" name="checkbox"/>
           {% else %}
-            <input class="my-auto" type="checkbox" value="{{ingredient.pk}}" name=""checkbox/>
+            <input class="my-auto" type="checkbox" value="{{ingredient.pk}}" name="checkbox"/>
           {% endif %}
-
-          <button type="submit" class="btn btn-warning ms-2" name="update_state" value="update_state">Update</button>
-          <button type="submit" class="btn btn-danger ms-2" name="delete" value="delete">Delete</button>
+          <button type="submit" class="btn btn-danger ms-2" name="delete" value="{{ingredient.pk}}">Delete</button>
         </li>
         {% endfor %}
       </ol>
@@ -35,7 +35,6 @@
           <textarea type="text" class="form-control" style="height: 100xp" name="item_description"></textarea>
         </div>
         <button type="submit" class="btn btn-primary" name="item_add" value="item_add">Create Item</button>
-        <button type="submit" class="btn btn-warning" name="item_update" value="item_update">Update Item</button>
       </div>
   </div>
 </form>
